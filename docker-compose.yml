@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:latest
+    container_name: ubike_db
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: changeme
+      POSTGRES_USER: ubike
+      POSTGRES_DB: ubike
+    volumes:
+      - ubike_db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  ubike_db_data:
+    driver: local
