@@ -12,10 +12,10 @@ public class IngestApp {
     private static final Logger log = LoggerFactory.getLogger(IngestApp.class);
 
     public static void main(String[] args) {
-        new IngestApp().run();
+        System.exit(new IngestApp().run());
     }
 
-    public void run() {
+    public int run() {
         try (var serviceRegistry = new StandardServiceRegistryBuilder()
                 .configure()
                 .build();
@@ -29,7 +29,9 @@ public class IngestApp {
 
         } catch (Exception e) {
             log.error("Error during user interaction", e);
+            return -1;
         }
+        return 0;
     }
 
 }
