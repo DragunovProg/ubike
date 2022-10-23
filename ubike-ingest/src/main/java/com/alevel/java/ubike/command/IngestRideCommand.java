@@ -72,7 +72,6 @@ class IngestRideCommand implements Command<RideDTO> {
                     context.startedAt(),
                     context.finishedAt()
             );
-            sessionFactory.close();
             tx.commit();
 
             return result;

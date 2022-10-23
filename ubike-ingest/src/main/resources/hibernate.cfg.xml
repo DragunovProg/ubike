@@ -6,8 +6,8 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/light-show</property>
-        <property name="hibernate.connection.username">ubike</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/ubike</property>
+        <property name="hibernate.connection.username">postgres</property>
         <property name="hibernate.connection.password">changeme</property>
 
         <property name="hibernate.connection.provider_class">org.hibernate.hikaricp.internal.HikariCPConnectionProvider</property>

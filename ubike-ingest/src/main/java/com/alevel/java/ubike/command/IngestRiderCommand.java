@@ -36,7 +36,6 @@ public class IngestRiderCommand implements Command<RiderDTO> {
 
             var riderDTO = new RiderDTO(rider.getId(), rider.getNickname());
 
-            sessionFactory.close();
             transaction.commit();
 
 

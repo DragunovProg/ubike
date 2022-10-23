@@ -34,7 +34,6 @@ public class IngestWaypointCommand implements Command<Coordinates>{
             session.persist(waypoint);
 
             Coordinates coordinates = new Coordinates(context.altitude(), context.longitude());
-            sessionFactory.close();
 
             transaction.commit();
 
