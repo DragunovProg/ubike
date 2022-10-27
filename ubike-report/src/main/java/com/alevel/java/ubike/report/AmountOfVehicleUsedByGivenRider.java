@@ -23,9 +23,10 @@ public class AmountOfVehicleUsedByGivenRider implements Report<Map<String, Integ
     public Map<String, Integer> load() throws UbikeReportException {
 
         String sql = """
-                select count(r.vehicle_id)  from (select distinct on(rider_id, vehicle_id) rider_id, vehicle_id from rides) as r
-                where r.rider_id = (select id from riders where nickname = ?)
-                group by rider_id
+                select r.nickname, count(DISTINCT rs.vehicle_id)  from rides rs
+                    join riders r on  r.id = rs.rider_id
+                where  r.nickname = ?
+                group by r.nickname
                 """;
 
         try (PreparedStatement query = connectionSupplier.get().prepareStatement(sql)) {

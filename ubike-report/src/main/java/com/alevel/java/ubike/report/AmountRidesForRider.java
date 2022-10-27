@@ -19,9 +19,10 @@ public class AmountRidesForRider implements Report<Map<String, Integer>>{
     public Map<String, Integer> load() throws UbikeReportException {
 
         String sql = """
-                select count(id) from rides
-                where rider_id = (select id from riders where nickname = ?)
-                group by rider_id
+                select r.nickname, count(rides.id) from rides
+                                 join riders r on r.id = rides.rider_id
+                                                  where r.nickname = ?
+                                 group by r.nickname;
                 """;
 
         try (PreparedStatement query = connectionSupplier.get().prepareStatement(sql)) {

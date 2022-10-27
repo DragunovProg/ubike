@@ -24,11 +24,6 @@ public class IngestRiderCommand implements Command<RiderDTO> {
         try(var session = sessionFactory.openSession()) {
             transaction = session.beginTransaction();
 
-
-            if (context.nickname() == null) {
-                throw new UbikeIngestException("nickname can't be null");
-            }
-
             var rider = new Rider();
             rider.setNickname(context.nickname());
 
@@ -39,11 +34,7 @@ public class IngestRiderCommand implements Command<RiderDTO> {
             transaction.commit();
 
 
-
             return riderDTO;
-        } catch (UbikeIngestException e) {
-            transaction.rollback();
-            throw e;
         } catch (Exception e) {
             if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
